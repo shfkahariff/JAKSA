@@ -1,0 +1,45 @@
+<body class="text-center" style="display:flex align-items: center padding-top: 40px padding-bottom: 40px">
+
+  <main  class= "col-md-2 col-lg-4 container">
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      
+      <h1 class="h3 mb-3 fw-normal display-2">Log Masuk</h1>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+      <br/>
+      <div class="form-inputs">
+
+        <div class="form-floating">
+          <%= f.input_field :email,
+                      required: false,
+                      autofocus: true,
+                      input_html: { autocomplete: "email" }, class: "form-control", placeholder: "name@example.com" %>
+          <%= f.label :email %>
+        </div>
+        <br/>
+
+        <div class="form-floating">
+          <%= f.input_field :password,
+                      required: false,
+                      input_html: { autocomplete: "current-password" }, class: "form-control", placeholder: "name@example.com" %>
+          <%= f.label :password %>
+        </div>
+        <br/>
+
+        <% if devise_mapping.rememberable? -%>
+          <div class="checkbox mb-3">
+            <%= f.check_box :remember_me, as: :boolean %> 
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Log Masuk", class:"w-100 btn btn-lg btn-primary" %>
+      </div>
+    <% end %>
+
+  </main>
+</body>
+
+<%= render "devise/shared/links" %>

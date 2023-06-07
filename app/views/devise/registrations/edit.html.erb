@@ -1,0 +1,60 @@
+<body class="text-center" style="display:flex align-items: center padding-top: 40px
+  padding-bottom: 40px">
+
+<h2 h3 mb-3 fw-normal display-2>Akaun Suntingan</h2>
+  <main  class= "col-md-2 col-lg-6 container">
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs">
+        <div class="field form-group col-sm-8 container">
+          <%= f.input :nama_penuh, required: true, autofocus: true, class:"form-control" %>
+        </div>
+
+        <div class="field form-group col-sm-8 container">
+          <%= f.input :no_ic, required: true, autofocus: true, class:"form-control" %>
+        </div>
+
+        <div class="field form-group col-sm-8 container">
+          <%= f.input :email, required: true, autofocus: true, class:"form-control" %>
+        </div>
+
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+          <% end %>
+
+        <div class="field form-group col-sm-8 container">
+          <%= f.input :password,
+                      hint: "tinggalkan kosong jika anda tidak mahu menukar kata laluan",
+                      required: false,
+                      input_html: { autocomplete: "new-password" }, class:"form-control" %>
+        </div>
+
+        <div class="field form-group col-sm-8 container">
+          <%= f.input :password_confirmation,
+                      required: false,
+                      input_html: { autocomplete: "new-password" }, class:"form-control" %>
+        </div>
+
+        <div class="field form-group col-sm-8 container">
+          <%= f.input :current_password,
+                      hint: "kami memerlukan kata laluan anda untuk memastikan perubahan",
+                      required: true,
+                      input_html: { autocomplete: "current-password" }, class:"form-control" %>
+        </div>
+      </div>
+
+      <div class="form-actions col-md-12 text-center gap-2 col-6 mx-auto container">
+        <%= f.button :submit, "Kemaskini", class:"btn btn-primary" %>
+      </div>
+    <% end %>
+  </main>
+</body>
+
+<br/>
+<div class="card-body">
+    <h5 class="card-title">Pembatalan Akaun</h5>
+    <p class="card-text">Tekan butang di bawah untuk batal akaun anda</p>
+    <%= button_to "Batal Akaun Saya", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger' %></div>
+  </div>
+<br/><br/>

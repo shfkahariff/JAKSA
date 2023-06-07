@@ -1,0 +1,74 @@
+<% render @payment %>
+
+<%= simple_form_for(@payment) do |f| %>
+  <div class="col-md-8 col-lg-10 container">
+  <h4 class="mb-3">Butiran Bayaran</h4>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+      <div class="form-inputs">
+
+        <div class="row g-3">
+            <div class="col-12">
+              <%= f.label :payment_status, label: "Status Bayaran", disabled:true %>
+              <% if @payment.payment_status == "true" %>
+              <span class="badge text-bg-success">Berjaya</span>
+              <% else %>
+              <span class="badge text-bg-danger">Gagal</span>
+              <% end %>
+            </div>
+
+            <div class="col-sm-6">
+              <%= f.input :buyer_name, label: "Nama Ahli", disabled:true %>
+            </div>
+
+            <div class="col-sm-6">
+              <%= f.input :buyer_phone, label: "No Telefon Ahli", disabled:true %>
+            </div>
+
+            <div class="col-sm-6">
+              <%= f.input :buyer_email, label: "Alamat Emel Ahli", disabled:true %>
+            </div>
+
+            <div class="col-sm-6">
+                <%= f.input :payment_id, label: "ID Bayaran", disabled:true %>
+            </div>
+
+            <div class="col-12">
+                <%= f.label :status_url, label: "URL Status", disabled:true %>
+                <%= link_to @payment.status_url, @payment.status_url, target: "_blank", class: "form-control" %>
+            </div>
+
+            <div class="col-12">
+                <% if @payment.retry_url.present? %>
+                    <%= f.label :retry_url, label: "URL Ulang", disabled:true %>
+                    <%= link_to @payment.retry_url, @payment.retry_url, target: "_blank", class: "form-control" %>
+                <% else %>
+                    <%= f.label :retry_url, label: "URL Ulang", disabled:true %> <br/>
+                    <p>Bayaran berjaya dilakukan, tiada URL Ulang</p>
+                <% end %>
+            </div>
+
+            <div class="col-12">
+              <% if @payment.receipt_url.present? %>
+                <%= f.label :receipt_url, label: "URL Resit", disabled:true %>
+                <%= link_to @payment.receipt_url, @payment.receipt_url, target: "_blank", class: "form-control", disabled:true %>
+              <% else %>
+                <%= f.label :receipt_url, label: "URL Resit", disabled:true %> <br/>
+                <p>Bayaran tidak berjaya dilakukan, tiada URL Resit</p>
+              <% end %>
+            </div>
+
+            <div class="col-sm-6">
+                <%= f.input :transaction_amount, label: "Jumlah Transaksi", disabled:true %>
+            </div>
+
+            <div class="col-sm-6">
+                <%= f.input :borang_id, label: "ID Borang", disabled:true %>
+            </div>        
+        </div>
+
+      </div>
+    <br/><br/>
+  </div>
+<% end %>    

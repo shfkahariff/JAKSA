@@ -1,0 +1,55 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nama_penuh: MyString
+  no_ic: MyString
+  jawatan: MyString
+  tarikh_anugerah: 2023-04-04
+  alamat_pejabat: MyString
+  alamat_surat: MyString
+  alamat_rumah: MyString
+  alamat_emel: MyString
+  no_pejabat: MyString
+  no_fax: MyString
+  no_rumah: MyString
+  no_tel: MyString
+  darjah_negeri: MyString
+  darjah_kebesaran: MyString
+  nama_pasangan: MyString
+  no_ic_pasangan: MyString
+  no_tel_pasangan: MyString
+  no_rumah_pasangan: MyString
+  darjah_pasangan: MyString
+  no_kenderaanf: MyString
+  jenis_kenderaanf: MyString
+  no_kenderaans: MyString
+  jenis_kenderaans: MyString
+  gambar_ahli: MyString
+  resit: MyString
+
+two:
+  nama_penuh: MyString
+  no_ic: MyString
+  jawatan: MyString
+  tarikh_anugerah: 2023-04-04
+  alamat_pejabat: MyString
+  alamat_surat: MyString
+  alamat_rumah: MyString
+  alamat_emel: MyString
+  no_pejabat: MyString
+  no_fax: MyString
+  no_rumah: MyString
+  no_tel: MyString
+  darjah_negeri: MyString
+  darjah_kebesaran: MyString
+  nama_pasangan: MyString
+  no_ic_pasangan: MyString
+  no_tel_pasangan: MyString
+  no_rumah_pasangan: MyString
+  darjah_pasangan: MyString
+  no_kenderaanf: MyString
+  jenis_kenderaanf: MyString
+  no_kenderaans: MyString
+  jenis_kenderaans: MyString
+  gambar_ahli: MyString
+  resit: MyString

@@ -1,0 +1,13 @@
+<main class="px-3 text-center">
+         <% if current_user %>
+            <br/>
+            <p>Selamat Datang <%= current_user.nama_penuh %>!</p>
+            
+            <p>Ini ialah nombor ahli anda: <%= current_user.id %></p>
+            
+          <% else %>
+            <br/>
+            <%= render 'home/homepage' %>
+          <% end %>    
+</main>
+

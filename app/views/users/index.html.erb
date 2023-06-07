@@ -1,0 +1,33 @@
+<h1>Senarai Akaun Ahli</h1>
+<br/>
+
+<table id="users", class="table table-striped table-bordered table-hover ">
+  <thead class= "table-primary">
+    <tr>
+      <th>No Ahli</th>
+      <th>Nama Penuh</th>
+      <th>No IC Ahli</th>
+      <th>Emel Ahli</th>
+      <th>Status Aktif</th>
+      <th>Status Admin</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.nama_penuh %></td>
+        <td><%= user.no_ic %></td>
+        <td><%= user.email %></td>
+        <td><%= user.validated ? "Yes" : "No" %></td>
+        <td><%= user.admin ? "Yes" : "No" %></td>
+        <td>
+          <% if current_user.admin? %>
+              <%= link_to "Validate", validate_user_user_path(user), method: :post %>
+            <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

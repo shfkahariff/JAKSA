@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Print Borang</title>
+  </head>
+  <body>
+    <% render @borang %>
+
+<%= simple_form_for(@borang) do |f| %>
+  <div class="col-md-8 col-lg-10 container">
+  <h4 class="mb-3">Borang Keahlian</h4>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+      <div class="form-inputs">
+        <div class="row g-3">
+            
+            <div class="col-12">
+              <%= f.association :user, label_method: :id, include_blank: false, disabled:true, label: "No Ahli" %>
+            </div>
+
+           <div class="col-sm-6">
+              <%= f.input :nama_penuh, label: "Nama Penuh ", disabled:true %>
+            </div>
+
+            <div class="col-sm-6">
+              <%= f.input :no_ic, label:"No Kad Pengenalan", disabled:true %>
+            </div>
+
+            <div class="col-12">
+              <%= f.input :jawatan, label: "Jawatan Sekarang", disabled:true %>
+
+            </div>
+
+            <div class="col-12">
+              <%= f.input :tarikh_anugerah, as: :date, start_year: 1958, end_year: 2024, label: "Tarikh penerimaan anugerah perlantikan JAKSA", disabled:true %>
+            </div>
+
+            <div class="col-sm-6">
+              <%= f.input :alamat_pejabat, label: "Alamat Pejabat", disabled:true %>
+            </div>
+
+            <div class="col-sm-6">
+              <%= f.input :alamat_surat, label: "Alamat Surat-Menyurat", disabled:true %>
+            </div>
+
+            <div class="col-sm-6">
+              <%= f.input :alamat_rumah, label: "Alamat Rumah Kediaman", disabled:true %>
+            </div>
+
+            <div class="col-sm-6">
+              <%= f.input :alamat_emel, label: "Alamat Emel", hint: "Sila letakkan format yang betul seperti 'contoh@emel.com'", disabled:true %>
+            </div>
+
+            <div class="col-sm-6">
+              <%= f.input :no_pejabat, label:"No Tel Pejabat", disabled:true %>
+            </div>
+
+            <div class="col-sm-6">
+              <%= f.input :no_fax,  label: "No Fax", disabled:true %>
+            </div>
+
+            <div class="col-sm-6">
+              <%= f.input :no_rumah, label: "No Tel Rumah", disabled:true %>
+            </div>
+
+            <div class="col-sm-6">
+              <%= f.input :no_tel, label: "No. Telefon Bimbit", hint: "Sila masukkan nombor telefon beserta '-'", disabled:true %>
+            </div>
+       
+            <div class="col-12">
+             <%= f.input :darjah_negeri_id, collection: State.all, prompt: "Select a State", label_method: :negeri, disabled:true %>
+            </div>
+
+           <div class="col-12">
+              <%= f.input :darjah_kebesaran_id, as: :grouped_select, collection: State.all, group_method: :ranks, group_label_method: :negeri, label: "Darjah Kebesaran", prompt: "Select a Rank", input_html: { class: "form-control" }, value_method: :id, label_method: :darjah, disabled:true %>
+            </div>
+          
+        </div>
+
+        <div class="row g-3">
+            <div class="col-sm-6">
+              <%= f.input :nama_pasangan, label: "Nama Pasangan", hint: "Suami/Isteri Ahli" , disabled:true %>
+            </div>
+
+            <div class="col-sm-6">
+              <%= f.input :no_ic_pasangan, label: "No Kad Pengenalan Pasangan", disabled:true %>
+            </div>
+
+            <div class="col-sm-6">
+              <%= f.input :no_tel_pasangan, label: "No Telefon Pasangan", disabled:true %>
+            </div>
+
+            <div class="col-sm-6">
+              <%= f.input :no_rumah_pasangan, label: "No Rumah Pasangan", disabled:true %>
+            </div>
+
+            <div class="col-12">
+              <%= f.input :darjah_pasangan, label: "Darjah Kebesaran Pasangan", hint: "jika ada", disabled:true %>
+            </div>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-sm-6">
+            <%= f.input :no_kenderaanf, label: "No Pendaftaran Kereta", hint: "Untuk Kegunaan Kenderaan Yang Akan Menggunakan Lencana JP", disabled:true %>
+          </div>
+
+          <div class="col-sm-6">
+            <%= f.input :jenis_kenderaanf, label: "Jenis Kereta", hint: "Untuk Kegunaan Kenderaan Yang Akan Menggunakan Lencana JP", disabled:true %>
+          </div>
+
+          <div class="col-sm-6">
+            <% if @borang.gambar_ahli.present? %>
+                <%= f.label :gambar_ahli, as: :file, label:"Gambar Passport", hint:"Untuk Kegunaan Kad Ahli", readonly:true %>
+                <%= image_tag @borang.gambar_ahli.url, width: "400", height: "400", alt: "Gambar Ahli" %>
+            <% else %>
+                <p>Gambar Ahli: <br/> Tiada Gambar Yang Dimasukkan.</p>
+            <% end %>
+          </div>
+
+        </div>
+
+        <div class="row g-3">
+          <div class="form-check"><br/>
+          <h5>Bayaran Masuk adalah seperti berikut:</h5>
+
+          <ul class="list-group">
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Yuran Masuk', true, data:{price: '3000'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Yuran Masuk dan Keahlian Seumur Hidup | RM3000.00 <br>
+            </li>
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Sumbangan Tabung Dana', true, data:{price: '1000'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Sumbangan Tabung Dana | RM1000.00 <br>
+            </li>
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Kad Kuasa', true, data:{price: '100'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Kad Kuasa (ID)(Gold & Merah) | RM100.00 <br>
+            </li>
+          </ul>
+
+          <br/>
+
+            <h5>Pembelian Aksesori</h5>
+          <h6>Aksesori JP untuk pakaian (mess kit) ahli JP:</h6>
+          <% if @borang.messkit.present? %>
+          <ul class="list-group">
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Apolet', @borang.messkit.include?('Apolet'), data:{price: '250'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Apolet - 1 Pasang | RM250.00 <br>
+            </li>
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Geroget', @borang.messkit.include?('Geroget'), data:{price: '200'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Georget - 1 Pasang | RM200.00 <br>
+            </li>
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Butang Besar', @borang.messkit.include?('Butang Besar'), data:{price: '75'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Butang Besar(Gold Plated) - 5 Biji | RM75.00 <br>
+            </li>
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Butang Kecil', @borang.messkit.include?('Butang Kecil'), data:{price: '75'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Butang Kecil(Gold Plated) - 8 Biji | RM75.00 <br>
+            </li>
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Lencana Songkok', @borang.messkit.include?('Lencana Songkok'), data:{price: '250'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Lencana Songkok - 1 Unit | RM250.00 <br>
+            </li>
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Lace Songkok', @borang.messkit.include?('Lace Songkok'), data:{price: '120'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Lace Songkok - 1 Unit | RM120.00 <br>
+            </li>
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Lace Seluar', @borang.messkit.include?('Lace Seluar'), data:{price: '200'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Lace Seluar - 1 Unit | RM200.00 <br>
+            </li>
+          </ul>
+
+             <br>
+
+            <h6>Lain-Lain: </h6>
+
+          <ul class="list-group">
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Lencana Kereta', @borang.messkit.include?('Lencana Kereta'), data:{price: '200'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Lencana Kereta(JP Car Badge) - 1 Set | RM200.00 <br>
+            </li>
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Collar Pin', @borang.messkit.include?('Collar Pin'), data:{price: '30'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Collar pin - 1 Unit | RM30.00 <br>
+            </li>
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Tali Leher', @borang.messkit.include?('Tali Leher'), data:{price: '150'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Tali Leher(tie) JP - 1 Set | RM150.00 <br>
+            </li>
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Songket Isteri', @borang.messkit.include?('Songket Isteri'), data:{price: '400'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Songket Isteri | RM400.00 <br>
+            </li>
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Rubber Stamp', @borang.messkit.include?('Rubber Stamp'), data:{price: '100'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Rubber Stamp | RM100.00 <br>
+            </li>
+        
+          </ul>
+            <br>
+          <% else %>
+
+          <ul class="list-group">
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Apolet', false, data:{price: '250'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Apolet - 1 Pasang | RM250.00 <br>
+            </li>
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Geroget', false, data:{price: '200'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Georget - 1 Pasang | RM200.00 <br>
+            </li>
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Butang Besar', false, data:{price: '75'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Butang Besar(Gold Plated) - 5 Biji | RM75.00 <br>
+            </li>
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Butang Kecil', false, data:{price: '75'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Butang Kecil(Gold Plated) - 8 Biji | RM75.00 <br>
+            </li>
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Lencana Songkok', false, data:{price: '250'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Lencana Songkok - 1 Unit | RM250.00 <br>
+            </li>
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Lace Songkok', false, data:{price: '120'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Lace Songkok - 1 Unit | RM120.00 <br>
+            </li>
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Lace Seluar', false, data:{price: '200'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Lace Seluar - 1 Unit | RM200.00 <br>
+            </li>
+          </ul>
+
+             <br>
+
+            <h6>Lain-Lain: </h6>
+
+          <ul class="list-group">
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Lencana Kereta', false, data:{price: '200'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Lencana Kereta(JP Car Badge) - 1 Set | RM200.00 <br>
+            </li>
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Collar Pin', false, data:{price: '30'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Collar pin - 1 Unit | RM30.00 <br>
+            </li>
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Tali Leher', false, data:{price: '150'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Tali Leher(tie) JP - 1 Set | RM150.00 <br>
+            </li>
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Songket Isteri', false, data:{price: '400'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Songket Isteri | RM400.00 <br>
+            </li>
+            <li class="list-group-item">
+              <%= check_box_tag "extra[messkit][]", 'Rubber Stamp', false, data:{price: '100'}, id: 'messkit', class: 'checkboxClass', disabled:true %> Rubber Stamp | RM100.00 <br>
+            </li>
+        
+          </ul>
+
+          <br/>
+
+          <p><strong>Tiada Aksesori yang dipilih</strong></p>
+
+          <% end %>
+            <br>
+                <%= f.input :total_price, value: "0", class: "form-control", readonly: true, id: "borang_total_price" %>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="form-actions col-md-12 text-center gap-2 col-6 mx-auto">
+          <%= link_to "Back", borang_path(@borang), class: "btn btn-primary btn-lg w-60" %>
+      </div>
+  </div>
+<% end %>
+
+<script>
+  var printButton = document.getElementById('print-btn');
+  var gambarAhli = '<%= j @borang.gambar_ahli.url %>';
+
+  printButton.addEventListener('click', function() {
+    var printWindow = window.open('', '_blank', 'width=800,height=600');
+
+    window.setTimeout(function() {
+      printWindow.document.write('<img src="' + gambarAhli + '">');
+      printWindow.document.getElementsByTagName('img')[0].onload = function() {
+        printWindow.print();
+        printWindow.close();
+      };
+    }, 500);
+  });
+</script>
+    
+  </body>
+</html>
+
+<script>
+  // Open the PDF in a new tab
+  var newTab = window.open('<%= url_for(controller: 'borangs', action: 'print', format: 'pdf', id: @borang.id) %>', '_blank');
+
+  // Wait for the PDF to load and then initiate the print dialog
+  newTab.addEventListener('load', function() {
+    newTab.focus();
+    newTab.print();
+  });
+</script>
+
+

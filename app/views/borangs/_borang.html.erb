@@ -1,0 +1,125 @@
+<div id="<%= dom_id borang %>">
+  <p>
+    <strong>Nama penuh:</strong>
+    <%= borang.nama_penuh %>
+  </p>
+
+  <p>
+    <strong>No ic:</strong>
+    <%= borang.no_ic %>
+  </p>
+
+  <p>
+    <strong>Jawatan:</strong>
+    <%= borang.jawatan %>
+  </p>
+
+  <p>
+    <strong>Tarikh anugerah:</strong>
+    <%= borang.tarikh_anugerah %>
+  </p>
+
+  <p>
+    <strong>Alamat pejabat:</strong>
+    <%= borang.alamat_pejabat %>
+  </p>
+
+  <p>
+    <strong>Alamat surat:</strong>
+    <%= borang.alamat_surat %>
+  </p>
+
+  <p>
+    <strong>Alamat rumah:</strong>
+    <%= borang.alamat_rumah %>
+  </p>
+
+  <p>
+    <strong>Alamat emel:</strong>
+    <%= borang.alamat_emel %>
+  </p>
+
+  <p>
+    <strong>No pejabat:</strong>
+    <%= borang.no_pejabat %>
+  </p>
+
+  <p>
+    <strong>No fax:</strong>
+    <%= borang.no_fax %>
+  </p>
+
+  <p>
+    <strong>No rumah:</strong>
+    <%= borang.no_rumah %>
+  </p>
+
+  <p>
+    <strong>No tel:</strong>
+    <%= borang.no_tel %>
+  </p>
+
+  <p>
+    <strong>Darjah negeri:</strong>
+    <%= State.find_by(id: borang.darjah_negeri_id)&.negeri %>
+  </p>
+
+  <p>
+    <strong>Darjah kebesaran:</strong>
+    <%= Rank.find_by(id: borang.darjah_kebesaran_id)&.darjah %>
+  </p>
+
+  <p>
+    <strong>Nama pasangan:</strong>
+    <%= borang.nama_pasangan %>
+  </p>
+
+  <p>
+    <strong>No ic pasangan:</strong>
+    <%= borang.no_ic_pasangan %>
+  </p>
+
+  <p>
+    <strong>No tel pasangan:</strong>
+    <%= borang.no_tel_pasangan %>
+  </p>
+
+  <p>
+    <strong>No rumah pasangan:</strong>
+    <%= borang.no_rumah_pasangan %>
+  </p>
+
+  <p>
+    <strong>Darjah pasangan:</strong>
+    <%= borang.darjah_pasangan %>
+  </p>
+
+  <p>
+    <strong>No kenderaanf:</strong>
+    <%= borang.no_kenderaanf %>
+  </p>
+
+  <p>
+    <strong>Jenis kenderaanf:</strong>
+    <%= borang.jenis_kenderaanf %>
+  </p>
+
+  <p>
+    <strong>Gambar ahli:</strong>
+    <%= borang.gambar_ahli %>
+    <%= link_to "Buka", borang.gambar_ahli_url, target: "_blank" %>
+  </p>
+
+  <p>
+  <strong>Aksesori:</strong>
+  <%= borang.messkit %>
+
+</p>
+
+<p>
+  <strong>Jumlah perlu dibayar:</strong>
+  <%= borang.total_price %>
+
+</p>
+
+</div>

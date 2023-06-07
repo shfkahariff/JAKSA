@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <%= link_to 'JAKSA', home_index_path, class: "navbar-brand" %>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+      <% if user_signed_in?  %>
+
+        <li class="nav-item">
+          <%= link_to 'Laman Utama', home_index_path, class: "nav-link" %>
+        </li>
+       
+        <li class="nav-item">
+          <%= link_to 'Isi Borang', new_borang_path, class: "nav-link" %>
+        </li>
+
+        <% if current_user.validated? %>
+
+         <li class="nav-item">
+          <% current_user.borangs.each do |borang| %>
+            <%= link_to 'Kemaskini Borang', borang, class: "nav-link" %>
+          <% end %>
+        </li>
+
+        <li class="nav-item">
+          <% if current_user.latest_payment %>
+            <%= link_to 'Status Bayaran', current_user.latest_payment, class: "nav-link" %>
+          <% end %>
+        </li>
+
+
+        <% end %>
+
+        <% if  current_user.admin? %>
+        
+            <li><%= link_to 'Borang Semua Ahli', borangs_path, class: "nav-link" %></li>
+            <li><%= link_to 'Bayaran Semua Ahli', payments_path, class: "nav-link" %></li>
+            <li><%= link_to 'Akaun Ahli', all_users_path, class: "nav-link" %></li>
+
+      <% end %>
+      <% end %>
+
+      </ul>
+
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <% if user_signed_in? %>
+
+          <li class="nav-item">
+            <%= link_to 'Suntingan', edit_user_registration_path, class: "nav-link"  %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to 'Log Keluar', destroy_user_session_path, method: :delete, data: {turbo_method: :delete}, class: "nav-link" %>
+          </li>
+          <% end %>
+        </ul>
+    
+    </div>
+  </div>
+</nav>

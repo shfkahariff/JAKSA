@@ -1,0 +1,23 @@
+<body class="text-center" style="display:flex align-items: center padding-top: 40px
+  padding-bottom: 40px">
+    
+<main  class= "col-md-2 col-lg-4 container">
+  <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= f.error_notification %>
+
+  <h1 class="h3 mb-3 fw-normal display-5">Terlupa Kata Laluan?</h1>
+    <div class="form-inputs">
+      <%= f.input :email,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "email" }, class: "form-control" %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Emel saya cara menukar kata laluan ", class:"w-100 btn btn-lg btn-primary" %>
+    </div>
+  <% end %>
+</main>
+</body>
+
+<%= render "devise/shared/links" %>

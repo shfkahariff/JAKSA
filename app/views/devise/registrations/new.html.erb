@@ -1,0 +1,64 @@
+<body class="text-center" style="display:flex align-items: center padding-top: 40px
+  padding-bottom: 40px">
+  
+<main  class= "col-md-2 col-lg-4 container">
+
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= f.error_notification %>
+    <h1 class="h3 mb-3 fw-normal display-4">Daftar Akaun Baharu</h1>
+      <div class="form-floating">
+         <%= f.input_field :nama_penuh, class: "form-control", placeholder: "nama penuh seperti dalam kad pengenalan",
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "nama_penuh" } %>
+        <%= f.error :nama_penuh %>
+        <%= f.label :nama_penuh %>
+      </div>
+      <br/>
+
+      <div class="form-floating">
+        <%= f.input_field :no_ic, class: "form-control", placeholder: "000000-00-0000",
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "no_ic" } %>
+        <%= f.error :no_ic %>
+        <%= f.label :no_ic %>
+      </div>
+      <br/>
+
+      <div class="form-floating">
+        <%= f.input_field :email, class: "form-control", placeholder: "example@email.com",
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "email" } %>
+        <%= f.error :email %>
+        <%= f.label :email %>
+      </div>
+      <br/>
+
+      <div class="form-floating">  
+        <%= f.input_field :password, class: "form-control", placeholder: "example@email.com",
+                    required: true,
+                    input_html: { autocomplete: "new-password" } %>
+        <%= f.hint ("#{@minimum_password_length} characters minimum" if @minimum_password_length)%>
+        <%= f.error :password, id: 'password_error' %>
+        <%= f.label :password %>
+      </div>
+      <br/>
+
+      <div class="form-floating">
+        <%= f.input_field :password_confirmation, class: "form-control", placeholder: "example@email.com",
+                    required: true,
+                    input_html: { autocomplete: "new-password" } %>
+        <%= f.error :password_confirmation, id: 'password_confirmation_error' %>
+        <%= f.label :password_confirmation%>
+      </div>
+      <br/>
+
+      
+    <div class="form-actions">
+      <%= f.button :submit, "Daftar", class:"w-90 btn btn-lg btn-primary" %>
+    </div>
+  <% end %>
+</main>
+<%= render "devise/shared/links" %>

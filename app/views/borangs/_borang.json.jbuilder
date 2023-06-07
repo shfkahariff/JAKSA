@@ -1,0 +1,2 @@
+json.extract! borang, :id, :nama_penuh, :no_ic, :jawatan, :tarikh_anugerah, :alamat_pejabat, :alamat_surat, :alamat_rumah, :alamat_emel, :no_pejabat, :no_fax, :no_rumah, :no_tel, :darjah_negeri, :darjah_kebesaran, :nama_pasangan, :no_ic_pasangan, :no_tel_pasangan, :no_rumah_pasangan, :darjah_pasangan, :no_kenderaanf, :jenis_kenderaanf, :no_kenderaans, :jenis_kenderaans, :gambar_ahli, :resit, :created_at, :updated_at
+json.url borang_url(borang, format: :json)
